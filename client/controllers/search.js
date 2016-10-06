@@ -28,7 +28,6 @@
             $http.get("/search")
                 .then(function(response) {
                     vm.words = response.data;
-                    console.log(response.data);
                 },
                 function(response) {
                     console.log(response.data);
@@ -45,13 +44,15 @@
         // Filters out array while searching
         vm.filterBySearch = function(word) {
             if(!$scope.search) {
-                return true;
+                return false;
             }
             return regex.test(word);
         };
 
         // Get wordlist array from server
-        vm.getWords();
+        vm.getWords(); 
+        
+       
     }
 
 })();
