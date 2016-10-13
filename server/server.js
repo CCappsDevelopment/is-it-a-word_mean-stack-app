@@ -9,8 +9,10 @@ var app = express();
 
 // Serve Static Directories
 app.use("/angular", express.static(path.join(__dirname, "../node_modules/angular")));
+app.use("/views", express.static(path.join(__dirname, "../client/views")));
 app.use("/controllers", express.static(path.join(__dirname, "../client/controllers")));
-app.use("/directives", express.static(path.join(__dirname, "../client/directives")));
+app.use("/directives", express.static(path.join(__dirname, "../client/common/directives")));
+app.use("/services", express.static(path.join(__dirname, "../client/common/services")));
 app.use("/jquery", express.static(path.join(__dirname, "../node_modules/jquery/dist")));
 app.use("/bootstrap", express.static(path.join(__dirname, "../node_modules/bootstrap/dist")));
 app.use("/css", express.static(path.join(__dirname, "../client/css")));

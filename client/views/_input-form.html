@@ -1,0 +1,13 @@
+<input
+    name="search"
+    type="search"
+    placeholder="Search for 'Word' ..."
+    class="form-control"
+    ng-model="searchCtrl.searchFormString"
+    ng-change="searchCtrl.search()"
+/>
+<ul ng-show="searchCtrl.search">
+    <li ng-repeat="word in searchCtrl.words">
+        {{ word }}
+    </li>
+</ul>

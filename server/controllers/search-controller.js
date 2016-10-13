@@ -2,21 +2,27 @@
 
 var router = require("express").Router();
 
-router.get("/", getWords);
+router.post("/", search);
 
-function getWords(req, res) {
-    var WordList = require("../models/word-list").WordList;
-    
-    // use distinct to return wordlist array
-    WordList.distinct("wordlist").lean().exec()
-        .then(function(results){
-            res.status(200).json(results);
-        })
-        .catch(function(err) {
-            console.log("Error: " + err);
-            res.status(500).send(err.message);
-        });
+function search(req, res) {
+    if(req.body.payload) {
+        var WordList = require("../models/word-list").WordList;
+        var regex = new RegExp("(\\b\\w*" + req.body.payload + "\\w*\\b)", "gi");
 
+        WordList.find({}).lean().exec()
+            .then(function(results){
+                var prefilteredWords = results[0].words.join(" ");
+                var filteredWords = prefilteredWords.match(regex);
+
+                res.status(200).json(filteredWords);
+            })
+            .catch(function(err) {
+                console.log("Error: " + err);
+                res.status(500).send(err.message);
+            });
+    } else {
+        res.status(200).json([]);
+    }
 }
 
 module.exports = router;
