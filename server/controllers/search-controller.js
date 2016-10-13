@@ -7,7 +7,7 @@ router.post("/", search);
 function search(req, res) {
     if(req.body.payload) {
         var WordList = require("../models/word-list").WordList;
-        var regex = new RegExp("(\\b\\w*" + req.body.payload + "\\w*\\b)", "gi");
+        var regex = new RegExp("\\b" + req.body.payload + "\\w*", "gi");
 
         WordList.find({}).lean().exec()
             .then(function(results){

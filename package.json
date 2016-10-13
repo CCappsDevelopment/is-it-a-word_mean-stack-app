@@ -1,5 +1,5 @@
 {
-  "name": "isItAWord",
+  "name": "is-it-a-word",
   "version": "1.0.0",
   "description": "An app to determine if a string of characters is a word. This app uses the MEAN Stack",
   "main": "server.js",
