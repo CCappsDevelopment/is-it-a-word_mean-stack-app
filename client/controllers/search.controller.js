@@ -9,6 +9,7 @@
     
     function SearchController($scope, $http, regexEscapeService) {
         var vm = this;
+        vm.wordMatch = false;
         
         vm.searchFormString = "";
 
@@ -19,7 +20,12 @@
 
             $http.post("/search", req)
                 .then(function(response) {
+                    vm.wordMatch = false;
                     vm.words = response.data;
+                    
+                    if(vm.words[0] == vm.searchFormString) {
+                        vm.wordMatch = true;
+                    }
                 },
                 function(response) {
                     console.log(response.data);

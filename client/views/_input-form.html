@@ -6,8 +6,16 @@
     ng-model="searchCtrl.searchFormString"
     ng-change="searchCtrl.search()"
 />
-<ul ng-show="searchCtrl.search">
-    <li ng-repeat="word in searchCtrl.words">
-        {{ word }}
-    </li>
-</ul>
+
+<table ng-show="searchCtrl.search" class="table" >
+    <thead>
+        <tr>
+            <th>Possible Matches</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="word in searchCtrl.words">
+            <td ng-class="{ 'text-success': searchCtrl.wordMatch}">{{ word }}</td>
+        </tr>
+    </tbody>
+</table>
